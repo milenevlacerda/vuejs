@@ -8,7 +8,7 @@ _**Pontos destaques:**_
 * Desenvolvedor não precisa se preocupar em aplicar técnicas para otimizar sua aplicação e, quando houver necessidade, ela será mínima.
 * Incorpora muitos dos conceitos do Angular 1.X ao mesmo tempo que adota a estratégia de virtual DOM do React combinando assim a facilidade de uso do primeiro e a performance do segundo.
 
-# alurapic
+# Criando Projeto
 
 > A Vue.js project
 

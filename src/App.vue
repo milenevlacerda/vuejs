@@ -2,8 +2,8 @@
   <div id="app">
     <h1> {{ title }} </h1>
     <ul>
-      <li v-for="picture in pictures">
-        <img v-bind:src="picture.url" v-bind:alt="picture.title">
+      <li v-for="foto in fotos">
+        <img :src="foto.url" :alt="foto.title">
       </li>
     </ul>
   </div>
@@ -13,14 +13,14 @@
 export default {
   data() {
     return {
-      title: 'Pictures'
-      pictures: [
+      title: 'Pictures',
+      fotos: [
         {
           url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiZxJZkHv2sGQRxue11kOAzGHRDkByt9Yu0mREYpNrxxm8laEZuQEdPWc',
           title: 'dog'
         },
         {
-          url: 'http://www.ultracurioso.com.br/wp-content/uploads/2015/08/Cat.jpg',
+          url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiZxJZkHv2sGQRxue11kOAzGHRDkByt9Yu0mREYpNrxxm8laEZuQEdPWc',
           title: 'cat'
         }
       ]
