@@ -1,13 +1,13 @@
 <template>
   <div id="app" class="corpo">
     <h1 class="title"> {{ title }} </h1>
-    <input type="search" class="filtro" v-on:input="filtro = $event.target.value" placeholder="filtre pelo título">
+    <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre pelo título">
     <ul class="lista-fotos">
 
-      <li v-for="foto in fotosComFiltro" class="lista-fotos-item">
+      <li v-for="foto in fotos" class="lista-fotos-item">
 
         <painel :titulo="foto.titulo">
-          <img class="imagem-responsiva" :src="foto.url" :alt="foto.title">
+          <imagem-responsiva :url="foto.url" :titulo="foto.titulo"></imagem-responsiva>
         </painel>
 
       </li>
@@ -18,10 +18,12 @@
 
 <script>
 import Painel from './components/shared/painel/Painel.vue';
+import ImagemResponsiva from './components/shared/imagem-responsiva/ImagemResponsiva.vue';
 
 export default {
   components: {
-    'painel': Painel
+    'painel': Painel,
+    'imagem-responsiva': ImagemResponsiva
   },
 
   data() {
@@ -36,7 +38,7 @@ export default {
     fotosComFiltro() {
       if( this.filtro ) {
         let exp = new RegExp( this.filtro.trim(), 'i' );
-         return this.fotos.filter( foto => exp.test( foto.titulo ) );
+        return this.fotos.filter( foto => exp.test( foto.titulo ) );
       }else {
         return this.fotos;
       }
@@ -44,12 +46,10 @@ export default {
   },
 
   created() {
-    // this -> acessa o componente
-    // $http -> utiliza o VueResource
-    // $http utiliza promises
-    let promise = this.$http.get( 'http://localhost:3000/v1/fotos' );
-    promise.then( res => res.json())
-    .then( fotos => this.fotos = fotos, err => console.log( err ) );
+    this.$http
+      .get( 'http://localhost:3000/v1/fotos' )
+      .then( res => res.json() )
+      .then( fotos => this.fotos = fotos, err => console.log( err ) );
   }
 }
 </script>
@@ -71,10 +71,6 @@ export default {
 
   .lista-fotos-item {
     display: inline-block;
-  }
-
-  .imagem-responsiva {
-    width: 100%;
   }
 
   .filtro {
