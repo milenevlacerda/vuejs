@@ -9,17 +9,16 @@
 </template>
 
 <script>
-  export default {
-    // props: [ 'routes' ]
-
-    // validando props
-    props: {
-        rotas: {
-            type: Array,
-            required: true
-        }
+export default {
+  // props: [ 'routes' ]
+  // validando props
+  props: {
+    rotas: {
+      type: Array,
+      required: true
     }
   }
+}
 </script>
 
 <style lang="css" scoped>

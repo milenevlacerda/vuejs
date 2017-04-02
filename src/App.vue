@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="corpo">
 
-    <menu :rotas="routes"></menu>
+    <meu-menu :rotas="routes"></meu-menu>
 
     <transition name="pagina">
       <router-view></router-view>
@@ -15,13 +15,13 @@
 
   export default {
     components: {
-      'menu': Menu
+      'meu-menu': Menu
     },
 
     data() {
       return {
-        // routes: routes
-        routes
+        routes: routes
+        // routes
       }
     }
   }
