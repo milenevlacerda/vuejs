@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
+import './directives/Transform';
 
 // tem que vir entre chaves, porque não é default
 import { routes } from './routes';
@@ -15,16 +16,8 @@ const router  = new VueRouter({
 });
 
 // const router  = new VueRouter({ routes });
-
 new Vue({
   el: '#app',
   router: router,
   render: h => h(App)
 });
-
-
-// new Vue({
-//   el: '#app',
-//   routers,
-//   render: h => h(App)
-// });

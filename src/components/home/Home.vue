@@ -7,7 +7,7 @@
       <li v-for="foto in fotos" class="lista-fotos-item">
 
         <painel :titulo="foto.titulo">
-          <imagem-responsiva :url="foto.url" :titulo="foto.titulo"></imagem-responsiva>
+          <imagem-responsiva :url="foto.url" :titulo="foto.titulo" v-transform></imagem-responsiva>
           <botao tipo="button" rotulo="REMOVER" @botaoAtivado="remove( foto )" :confirmacao="false" estilo="perigo"></botao>
         </painel>
 
@@ -23,6 +23,7 @@ import Botao from '../shared/botao/Botao.vue';
 import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue';
 
 export default {
+
   components: {
     'painel': Painel,
     'imagem-responsiva': ImagemResponsiva,
@@ -64,6 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
   .title {
     text-align: center;
   }
@@ -75,8 +77,9 @@ export default {
   .lista-fotos-item {
     display: inline-block;
   }
-
+  
   .filtro {
     width: 100%;
   }
+
 </style>

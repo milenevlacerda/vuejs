@@ -18,7 +18,7 @@
       confirmacao: Boolean,
       estilo: String
     },
-
+    
     methods: {
       disparaAcao() {
         if( this.confirmacao ) {
