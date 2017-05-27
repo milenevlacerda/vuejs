@@ -7,7 +7,7 @@
       <li v-for="foto in fotos" class="lista-fotos-item">
 
         <painel :titulo="foto.titulo">
-          <imagem-responsiva :url="foto.url" :titulo="foto.titulo" v-transform></imagem-responsiva>
+          <imagem-responsiva :url="foto.url" :titulo="foto.titulo" v-transform:scale.animate="1.2"></imagem-responsiva>
           <botao tipo="button" rotulo="REMOVER" @botaoAtivado="remove( foto )" :confirmacao="false" estilo="perigo"></botao>
         </painel>
 
