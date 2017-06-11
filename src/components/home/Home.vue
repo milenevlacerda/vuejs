@@ -1,6 +1,9 @@
 <template>
   <div id="app" class="">
     <h1 class="title"> {{ title }} </h1>
+
+    <p v-show="mensagem" class="centralizado">{{ mensagem }}</p>
+
     <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="filtre pelo título">
     <ul class="lista-fotos">
 
@@ -21,6 +24,9 @@
 import Painel from '../shared/painel/Painel.vue';
 import Botao from '../shared/botao/Botao.vue';
 import ImagemResponsiva from '../shared/imagem-responsiva/ImagemResponsiva.vue';
+import Transform from '../../directives/Transform';
+import FotoService from '../../domain/foto/FotoService';
+
 
 export default {
 
@@ -30,11 +36,16 @@ export default {
     'botao': Botao
   },
 
+  directives: {
+    'transform': Transform
+  },
+
   data() {
     return {
       title: 'Pictures',
       fotos: [],
-      filtro: []
+      filtro: '',
+      mensagem: ''
     }
   },
 
@@ -50,15 +61,27 @@ export default {
   },
 
   methods: {
+
     remove( foto ) {
-      alert( 'Remover a foto ' + foto.titulo );
+
+      this.service.delete( foto._id )
+        .then( () => {
+          let indice = this.fotos.indexOf(foto);
+          this.fotos.splice( indice, 1 );
+          this.mensagem = "Foto removida com sucesso"
+        }, err => {
+          this.mensagem = "Não foi possível remover a foto :( !";
+          console.log(err)
+        });
     }
   },
 
   created() {
-    this.$http
-      .get( 'http://localhost:3000/v1/fotos' )
-      .then( res => res.json() )
+
+    this.service = new FotoService( this.$resource );
+
+    this.service
+      .lista()
       .then( fotos => this.fotos = fotos, err => console.log( err ) );
   }
 }
@@ -80,6 +103,10 @@ export default {
   
   .filtro {
     width: 100%;
+  }
+
+  .center {
+    text-align: center;
   }
 
 </style>
